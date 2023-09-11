@@ -1,6 +1,7 @@
 package require_field
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 )
@@ -16,13 +17,14 @@ func TestRequire(t *testing.T) {
 		t.Errorf("err must be nil. i is %T", i)
 	}
 
-	var st = &T{"", "one"}
+	var st = &T{}
 	err := Check(st)
 
 	if err == nil {
 		t.Errorf("err cannot be nil. Struct T have required field")
 	}
 
+	fmt.Println(err)
 	if !strings.Contains(err.Error(), "Home") {
 		t.Errorf("err must contain Home; have: %s", err.Error())
 	}
